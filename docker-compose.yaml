@@ -9,7 +9,7 @@ services:
       - redis
       - evolution-postgres
     ports:
-      - "8080:8080"
+      - "1013:1013"
     volumes:
       - evolution_instances:/evolution/instances
     networks:
@@ -17,7 +17,7 @@ services:
     env_file:
       - .env
     expose:
-      - "8080"
+      - "1013"
 
   frontend:
     container_name: evolution_frontend
@@ -25,6 +25,8 @@ services:
     restart: always
     ports:
       - "3000:80"
+    volumes:
+      - ./nginx-frontend.conf:/etc/nginx/conf.d/nginx.conf:ro
     networks:
       - evolution-net
 
